@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Teaching Assistant</title>
+  <title>AI-University</title>
   <!-- Google Font: Poppins -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -158,6 +158,37 @@
     }
 
     /* ---------------------------
+       AUTHORS SECTION
+    ---------------------------- */
+    .authors {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    .authors h2 {
+      color: #1F2937;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .authors ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .authors li {
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+    /* Highlight the author names to indicate links */
+    .authors a {
+      text-decoration: underline;
+      color: #990000;
+    }
+
+    /* ---------------------------
        CONTACT US SECTION
     ---------------------------- */
     .contact-us {
@@ -251,9 +282,9 @@
 
   <!-- HERO / HEADER SECTION -->
   <header>
-    <h1>AI Teaching Assistant</h1>
+    <h1>AI-University</h1>
     <p>
-      Experience the next generation of AI-driven education technology.
+        An LLM-based platform for instructional alignment to scientific classrooms.
     </p>
   </header>
 
@@ -262,14 +293,8 @@
     <!-- ABSTRACT SECTION -->
     <section class="abstract">
       <h2>Paper Abstract</h2>
-      <p>
-        <!-- Replace this placeholder text with your paper's abstract. -->
-        This research explores the potential of AI-powered teaching assistants 
-        to enhance the learning experience in modern classrooms. We examine 
-        the key challenges in deploying AI-driven systems, highlight best 
-        practices for integration into existing curricula, and discuss the 
-        ethical and pedagogical implications of AI as a tool for both 
-        educators and students.
+      <p style="text-align: justify">
+        We introduce AI University (AI-U), a flexible framework for AI-driven course content delivery that adapts to instructors' teaching styles. At its core, AI-U fine-tunes a large language model (LLM) with retrieval-augmented generation (RAG) to generate instructor-aligned responses from lecture videos, notes, and textbooks. Using a graduate-level finite-element-method (FEM) course as a case study, we present a scalable pipeline to systematically construct training data, fine-tune an open-source LLM with Low-Rank Adaptation (LoRA), and optimize its responses through RAG-based synthesis. Our evaluation, combining cosine similarity, LLM-based assessment, and expert review—demonstrates strong alignment with course materials. This demo, enhances traceability by linking AI-generated responses to specific sections of the relevant course material and time-stamped instances of the open-access video lectures. Our expert model is found to have greater cosine similarity with a reference on 86% of test cases. An LLM judge also found our expert model to outperform the base Llama 3.2 model approximately four times out of five. AI-U offers a scalable approach to AI-assisted education, paving the way for broader adoption in higher education.
       </p>
       <!-- Download Link to the Paper -->
       <a class="download-link" href="path/to/AI-Teaching-Assistant-Paper.pdf" download>
@@ -291,40 +316,81 @@
       </a>
     </div>
 
+    <!-- AUTHORS SECTION -->
+    <section class="authors">
+      <h2>Authors</h2>
+      <ul>
+        <li>
+          <strong>
+            <a href="https://www.linkedin.com/in/mostafa-fsh/" target="_blank" rel="noopener noreferrer">
+              Mostafa Faghih Shojaei
+            </a>
+          </strong> - Department of Aerospace and Mechanical Engineering, University of Southern California
+        </li>
+        <li>
+          <strong>
+            <a href="https://www.linkedin.com/in/rahulgulati23/" target="_blank" rel="noopener noreferrer">
+              Rahul Gulati
+            </a>
+          </strong> - Department of Aerospace and Mechanical Engineering, University of Southern California
+        </li>
+        <li>
+          <strong>
+            <a href="https://www.linkedin.com/in/bajasperson/" target="_blank" rel="noopener noreferrer">
+              Benjamin A. Jasperson
+            </a>
+          </strong> - Department of Aerospace and Mechanical Engineering, University of Southern California
+        </li>
+        <li>
+          <strong>
+            <a href="https://www.linkedin.com/in/upup-ashton-wang/" target="_blank" rel="noopener noreferrer">
+              Shangshang Wang
+            </a>
+          </strong> - Department of Computer Science, University of Southern California
+        </li>
+        <li>
+          <strong>
+            <a href="https://www.linkedin.com/in/simone-cimolato/" target="_blank" rel="noopener noreferrer">
+              Simone Cimolato
+            </a>
+          </strong> - Department of Astronautical Engineering, University of Southern California
+        </li>
+        <li>
+          <strong>
+            <a href="https://www.linkedin.com/in/dangli-cao-6113711b8/" target="_blank" rel="noopener noreferrer">
+              Dangli Cao
+            </a>
+          </strong> - Department of Electrical and Computer Engineering, University of Southern California
+        </li>
+        <li>
+          <strong>
+            <a href="https://viterbi.usc.edu/directory/faculty/Neiswanger/Willie" target="_blank" rel="noopener noreferrer">
+              Willie Neiswanger
+            </a>
+          </strong> - Department of Computer Science, University of Southern California
+        </li>
+        <li>
+          <strong>
+            <a href="https://viterbi.usc.edu/directory/faculty/Garikipati/Krishna" target="_blank" rel="noopener noreferrer">
+              Krishna Garikipati
+            </a>
+          </strong> - Department of Aerospace and Mechanical Engineering, University of Southern California
+        </li>
+      </ul>
+    </section>
+
     <!-- CONTACT US SECTION -->
     <section class="contact-us">
       <h2>Contact Us</h2>
       <p>If you have any questions or feedback, feel free to send us a message using the form below.</p>
-      <form action="#" method="post" class="contact-form">
-        <label for="name">Name</label>
-        <input 
-          type="text" 
-          id="name" 
-          name="name" 
-          placeholder="Your Name" 
-          required
-        />
-
-        <label for="email">Email</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          placeholder="Your Email" 
-          required
-        />
-
-        <label for="message">Message</label>
-        <textarea 
-          id="message" 
-          name="message" 
-          placeholder="Your Message" 
-          rows="6" 
-          required
-        ></textarea>
-
-        <button type="submit">Send</button>
-      </form>
+      <a 
+        class="open-hf-button"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSeifXdF_96f5O4-qAu0KYDkEhQgSaOvvodfsu08FcEurqnwSA/viewform?usp=dialog"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Contact Us
+      </a>
     </section>
   </main>
 
