@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Teaching Assistant</title>
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons (optional) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-ac2ODx0vjH3TKXcsk+Ib2oWkC6+PFKH07BHQgj1yV4NQa7Bnj1UBU095JveIWBXQ1Dc19C7kaqtA+Sd8xLKugw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    /* ---------------------------
+       GLOBAL STYLES & RESETS
+    ---------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      background-color: #F9FAFB; /* Light background */
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------------------------
+       HEADER / HERO SECTION
+       Cardinal Red (#990000) to Gold (#FFC72C)
+    ---------------------------- */
+    header {
+      position: relative;
+      background: linear-gradient(120deg, #990000, #FFC72C);
+      color: #fff;
+      padding: 3rem 1rem 6rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    header p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0.5rem auto 0 auto;
+      line-height: 1.6;
+    }
+    /* Wavy divider (SVG) to create a smooth transition to the body */
+    header::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23F9FAFB' fill-opacity='1' d='M0,96L80,122.7C160,149,320,203,480,218.7C640,235,800,213,960,170.7C1120,128,1280,64,1360,32L1440,0L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    /* ---------------------------
+       MAIN CONTAINER
+    ---------------------------- */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ---------------------------
+       ABSTRACT SECTION
+    ---------------------------- */
+    section.abstract {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-top: -4rem; /* Lifted upward near hero wave */
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2; /* Ensure it's above the wave */
+      text-align: center;
+    }
+    section.abstract h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #1F2937;
+    }
+    section.abstract p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    /* Download Link Button (anchor styled) */
+    .download-link {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #990000; /* Cardinal red button */
+      color: #fff;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: all 0.3s ease-in-out;
+    }
+    .download-link:hover {
+      background-color: #7A0000; /* Slightly darker cardinal red */
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(153, 0, 0, 0.2);
+    }
+
+    /* ---------------------------
+       HUGGING FACE EMBED
+    ---------------------------- */
+    .huggingface-embed {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .huggingface-embed iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .huggingface-embed h2 {
+      margin-bottom: 1rem;
+      color: #1F2937;
+      font-weight: 600;
+    }
+
+    /* Restart Button for HF App */
+    .restart-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #990000; /* Cardinal red */
+      color: #fff;
+      font-weight: 600;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+    .restart-button:hover {
+      background-color: #7A0000; 
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(153, 0, 0, 0.2);
+    }
+
+    /* ---------------------------
+       CONTACT US SECTION
+    ---------------------------- */
+    .contact-us {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .contact-us h2 {
+      color: #1F2937;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .contact-us p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #CCC;
+      border-radius: 4px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .contact-form button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #990000; /* Cardinal red */
+      color: #fff;
+      font-weight: 600;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+    .contact-form button:hover {
+      background-color: #7A0000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(153, 0, 0, 0.2);
+    }
+
+    /* ---------------------------
+       FOOTER
+    ---------------------------- */
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* ---------------------------
+       RESPONSIVE MEDIA QUERIES
+    ---------------------------- */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .download-link {
+        margin: 0.5rem 0;
+        display: inline-block;
+      }
+      .huggingface-embed iframe {
+        height: 500px;
+      }
+      .contact-form textarea {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO / HEADER SECTION -->
+  <header>
+    <h1>AI Teaching Assistant</h1>
+    <p>
+      Experience the next generation of AI-driven education technology.
+    </p>
+  </header>
+
+  <!-- MAIN CONTENT WRAPPER -->
+  <main>
+    <!-- ABSTRACT SECTION -->
+    <section class="abstract">
+      <h2>Paper Abstract</h2>
+      <p>
+        <!-- Replace this placeholder text with your paper's abstract. -->
+        This research explores the potential of AI-powered teaching assistants 
+        to enhance the learning experience in modern classrooms. We examine 
+        the key challenges in deploying AI-driven systems, highlight best 
+        practices for integration into existing curricula, and discuss the 
+        ethical and pedagogical implications of AI as a tool for both 
+        educators and students.
+      </p>
+      <!-- Download Link to the Paper -->
+      <a class="download-link" href="path/to/AI-Teaching-Assistant-Paper.pdf" download>
+        <i class="fas fa-file-download"></i> Download the Paper
+      </a>
+    </section>
+
+    <!-- HUGGING FACE APP EMBED -->
+    <div class="huggingface-embed">
+      <h2>Interact with the Hugging Face App</h2>
+      <!-- Replace with the URL of your Hugging Face space -->
+      <iframe 
+        id="huggingface-iframe"
+        src="https://my-ai-university-finite-element-method.hf.space">
+      </iframe>
+      <!-- "Restart App" button styled in cardinal red -->
+      <button 
+        class="restart-button"
+        onclick="document.getElementById('huggingface-iframe').contentWindow.location.reload();">
+        Restart App
+      </button>
+    </div>
+
+    <!-- CONTACT US SECTION -->
+    <section class="contact-us">
+      <h2>Contact Us</h2>
+      <p>If you have any questions or feedback, feel free to send us a message using the form below.</p>
+      <form action="#" method="post" class="contact-form">
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          placeholder="Your Name" 
+          required
+        />
+
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="Your Email" 
+          required
+        />
+
+        <label for="message">Message</label>
+        <textarea 
+          id="message" 
+          name="message" 
+          placeholder="Your Message" 
+          rows="6" 
+          required
+        ></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Your Name or Organization - All Rights Reserved
+  </footer>
+
+</body>
+</html>
