@@ -46,6 +46,7 @@
       color: #333;
       background-color: var(--gray-100);
       line-height: 1.6;
+      text-align: center; /* Ensure overall centering symmetry */
     }
 
     img {
@@ -58,55 +59,78 @@
       color: inherit;
     }
 
-    /* ---------------------------
-       HERO / HEADER
-    ---------------------------- */
-    header {
-      background: linear-gradient(120deg, var(--usc-cardinal) 0%, var(--usc-gold) 100%);
-      color: #fff;
-      text-align: center;
-      padding: 4rem 1rem 7rem;
-      position: relative;
-      overflow: hidden;
+    .hf-banner img {
+      transform: translateX(+4%);
     }
 
-    .hero-brand {
+    /* ---------------------------
+       TOP SECTION (LOGO + TITLE + TAGLINE)
+    ---------------------------- */
+    .top-wrap {
+      padding: 1.5rem 1rem 0.5rem;
+    }
+
+    .brand-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
+      gap: 0.75rem;
+      flex-wrap: nowrap;
     }
 
-    .logo {
-      width: clamp(60px, 12vw, 120px);
+    .brand-row .logo {
+      width: 100px;
+      height: auto;
       margin: 0;
     }
 
-    header h1 {
-      font-size: clamp(2rem, 6vw, 3.5rem);
+    .brand-row h1 {
+      font-size: 300%;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      color: var(--usc-cardinal);
+      margin: 0;
     }
 
-    header p {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      max-width: 600px;
-      margin-inline: auto;
+    .tagline {
+      font-size: 1rem;
+      max-width: 720px;
+      margin: 0.5rem auto 0;
+      color: #444;
     }
 
-    header::after {
-      /* Wavy divider */
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23f3f4f6' fill-opacity='1' d='M0,96L80,122.7C160,149,320,203,480,218.7C640,235,800,213,960,170.7C1120,128,1280,64,1360,32L1440,0L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'%3E%3C/path%3E%3C/svg%3E")
-        no-repeat;
-      background-size: cover;
+    /* ---------------------------
+       BUTTON STRIP
+    ---------------------------- */
+    .top-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem auto 0;
+      max-width: 900px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      background-color: var(--usc-cardinal);
+      color: #fff;
+      font-weight: 600;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    .btn img {
+      width: 22px;
+      height: 22px;
+    }
+
+    .btn:hover {
+      background-color: var(--usc-cardinal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(153, 0, 0, 0.25);
     }
 
     /* ---------------------------
@@ -122,7 +146,6 @@
       padding: 2.5rem 1rem;
     }
 
-    /* subtle section divider */
     section:not(:last-of-type) {
       border-bottom: 1px solid var(--gray-200);
     }
@@ -136,25 +159,6 @@
     }
 
     /* ---------------------------
-       CTA BUTTONS
-    ---------------------------- */
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.75rem;
-      border-radius: 8px;
-      background-color: var(--usc-cardinal);
-      color: #fff;
-      font-weight: 600;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
-    }
-
-    .btn:hover {
-      background-color: var(--usc-cardinal-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(153, 0, 0, 0.25);
-    }
-
-    /* ---------------------------
        HUGGINGFACE SECTION
     ---------------------------- */
     .hf-banner {
@@ -162,9 +166,11 @@
     }
 
     .hf-banner img {
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      margin: 0 auto 1.5rem; /* top: 0, left/right: auto, bottom: 1.5rem */
+      margin: 0 auto 1.5rem;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
     }
 
     /* ---------------------------
@@ -176,7 +182,7 @@
 
     .abstract p {
       text-align: justify;
-      margin-bottom: 2rem;
+      margin-bottom: 0;
     }
 
     /* ---------------------------
@@ -199,6 +205,10 @@
       text-decoration: underline;
     }
 
+    .authors {
+      text-align: left;
+    }
+
     /* ---------------------------
        CONTACT SECTION
     ---------------------------- */
@@ -208,7 +218,7 @@
 
     .contact p {
       max-width: 600px;
-      margin: 0 auto 2rem;
+      margin: 0 auto;
       text-align: center;
     }
 
@@ -217,15 +227,29 @@
     ---------------------------- */
     footer {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 1rem 1rem 1rem;
       font-size: 0.9rem;
       color: var(--gray-600);
+    }
+
+    .footer-logo {
+      width: 60px;
+      height: auto;
+      margin: 1rem auto 0;
     }
 
     /* ---------------------------
        RESPONSIVE TWEAKS
     ---------------------------- */
     @media (max-width: 768px) {
+      .brand-row h1 {
+        font-size: 1.45rem;
+      }
+
+      .tagline {
+        font-size: 0.9rem;
+      }
+
       section {
         padding: 2rem 0.5rem;
       }
@@ -233,33 +257,45 @@
   </style>
 </head>
 <body>
-  <!-- HERO -->
-  <header>
-    <div class="hero-brand">
+  <!-- TOP SECTION -->
+  <div class="top-wrap">
+    <div class="brand-row">
       <img src="assets/images/ai-u-logo.png" alt="AI-U Logo" class="logo" />
       <h1>AI University</h1>
     </div>
-    <p>An LLM-based platform for instructional alignment to scientific classrooms.</p>
-  </header>
+    <p class="tagline">An LLM-based platform for instructional alignment to scientific classrooms.</p>
+  </div>
+
+  <!-- ACTION BUTTONS -->
+  <div class="top-buttons">
+    <a class="btn" href="https://arxiv.org/abs/2504.08846" target="_blank" rel="noopener noreferrer">
+      <img src="assets/images/arxiv.png" alt="arXiv logo" />
+      Paper
+    </a>
+    <a class="btn" href="https://huggingface.co/spaces/my-ai-university/finite-element-method" target="_blank" rel="noopener noreferrer">
+      <img src="assets/images/huggingface.png" alt="Hugging Face logo" />
+      App
+    </a>
+    <a class="btn" href="https://github.com/my-ai-university/finite-element-method" target="_blank" rel="noopener noreferrer">
+      <img src="assets/images/github.png" alt="GitHub logo" />
+      Code
+    </a>
+    <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeifXdF_96f5O4-qAu0KYDkEhQgSaOvvodfsu08FcEurqnwSA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
+      <img src="assets/images/googleforms.png" alt="Google Forms logo" />
+      Contact Us
+    </a>
+  </div>
 
   <!-- MAIN CONTENT -->
   <main>
     <!-- HUGGINGFACE SECTION -->
     <section class="hf-banner">
-      <img src="assets/images/ai-u.png" alt="AI-U screenshot" width="90%" height="auto"/>
-      <a
-        class="btn"
-        href="https://huggingface.co/spaces/my-ai-university/finite-element-method"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Open the App
-      </a>
+      <img src="assets/images/ai-u.png" alt="AI-U screenshot" width="90%" height="auto" />
     </section>
 
     <!-- ABSTRACT -->
     <section class="abstract">
-      <h2>Abstract</h2>
+      <h2>Paper Abstract</h2>
       <p>
         We introduce AI University (AI-U), a flexible framework for AI-driven course content delivery that adapts to instructors' teaching styles.
         At its core, AI-U fine-tunes a large language model (LLM) with retrieval-augmented generation (RAG) to generate instructor-aligned responses from lecture videos, notes, and textbooks.
@@ -270,8 +306,7 @@
         An LLM judge also found our expert model to outperform the base Llama 3.2 model approximately four times out of five.
         AI-U offers a scalable approach to AI-assisted education, paving the way for broader adoption in higher education.
         Here, our framework has been presented in the setting of a class on FEM—a subject that is central to training PhD and Master students in engineering science. However, this setting is a particular instance of a broader context: fine-tuning LLMs to research content in science.
-      </p>        
-      <a class="btn" target="_blank" href="https://arxiv.org/abs/2504.08846">Read the Paper</a>
+      </p>
     </section>
 
     <!-- AUTHORS -->
@@ -288,25 +323,12 @@
         <li><strong><a href="https://viterbi.usc.edu/directory/faculty/Garikipati/Krishna" target="_blank" rel="noopener noreferrer">Krishna Garikipati</a></strong> - Department of Aerospace and Mechanical Engineering, USC</li>
       </ul>
     </section>
-
-    <!-- CONTACT -->
-    <section class="contact">
-      <h2>Contact Us</h2>
-      <p>If you have any questions or feedback, feel free to send us a message!</p>
-      <a
-        class="btn"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSeifXdF_96f5O4-qAu0KYDkEhQgSaOvvodfsu08FcEurqnwSA/viewform?usp=dialog"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Contact Us
-      </a>
-    </section>
   </main>
 
   <!-- FOOTER -->
   <footer>
     &copy; 2025 University of Southern California — All Rights Reserved
+    <img src="assets/images/ai-u-logo.png" alt="AI-U Logo" class="footer-logo" />
   </footer>
 </body>
 </html>
